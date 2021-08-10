@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Environment API Documentation - Scientia</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="https://unpkg.com/mermaid@8.5.1/dist/mermaid.css" rel="stylesheet">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Scientia</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">APIs <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Quick Start</a>
+</li>
+                                    
+<li>
+    <a href="." class="dropdown-item">Environment</a>
+</li>
+                                    
+<li>
+    <a href="../auth/" class="dropdown-item">Authentication</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#environment-api-documentation" class="nav-link">Environment API Documentation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#get" class="nav-link">Get</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="environment-api-documentation">Environment API Documentation</h1>
+<p>Returns all environment from a registered account.</p>
+<div class="mermaid">graph TD;
+    https://server/api/env/--&gt;GET/;
+    https://server/api/env/--&gt;GET/uuid;
+    https://server/api/env/--&gt;POST/;
+    https://server/api/env/--&gt;DELETE/;</div>
+<hr />
+<h2 id="get"><code>Get</code></h2>
+<h3 id="endpoint-env">endpoint: <code>/env/</code></h3>
+<p>Returns  Environments registered on the database.</p>
+<h4 id="parameters">Parameters</h4>
+<p>No parameters.</p>
+<h4 id="responses">Responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Not Authorized</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre class="highlight"><code class="language-JSON">GET http://server/api/env/
+
+Response 200 ok
+[
+ {"uuid":  "string"}
+ {"uuid":  "string"}
+ {"uuid":  "string"}
+]</code></pre>
+<h5 id="consuming-the-api">Consuming the API</h5>
+<ol>
+<li>Enter in the url <a href="http://localhost:8000/api/env/">http://server/api/env/</a></li>
+<li>Click on <code>GET</code> button at the top right side of the screen</li>
+<li>Make sure you are logged in.</li>
+</ol>
+<p><img alt="Testing Exmple" src="../../img/env_get.png" /></p>
+<hr />
+<h3 id="endpoint-envuuid">endpoint: <code>/env/{uuid}</code></h3>
+<p>Returns  Environments registered on the database.</p>
+<h4 id="parameters_1">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uuid  *required</td>
+<td>path</td>
+<td>Environment identifier</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses_1">Responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Not Authorized</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre class="highlight"><code class="language-JSON">GET http://server/api/env/uuid
+200 ok
+{
+    "transp_cost": [
+        [
+            [
+                8.504379284263033,
+                8.21952272694995,
+                7.335616371598338
+            ],
+            [
+                9.188171808943858,
+                6.399709100195715,
+                8.465899755878109
+            ],
+            [
+                5.043810632924408,
+                9.30498145274223,
+                5.543619294516228
+            ]
+        ],
+        [
+            [
+                8.273912408515342,
+                5.219330242553533,
+                6.965109393725479
+            ],
+            [
+                6.843241536238311,
+                8.861599481023948,
+                5.229627303652337
+            ],
+            [
+                5.757278568029695,
+                9.556365124630641,
+                5.645263721660658
+            ]
+        ]
+    ],
+    "prod_cost": [
+        [
+            2.6673777707712727,
+            2.019097743991032,
+            3.9197012389507133
+        ],
+        [
+            4.028668653602703,
+            4.930122930206867,
+            2.669597812493785
+        ]
+    ],
+    "fixed_cost": [
+        17.61564249593163,
+        13.014259072860215,
+        19.19574948645142
+    ],
+    "demand": [
+        [
+            24,
+            17,
+            24
+        ],
+        [
+            14,
+            24,
+            10
+        ]
+    ],
+    "supply": [
+        [
+            29.0,
+            25.0,
+            26.0
+        ],
+        [
+            21.0,
+            21.0,
+            19.0
+        ]
+    ],
+    "space": [
+        1.0127012901645935,
+        1.1174345954454479
+    ],
+    "flow_cap": [
+        [
+            25.0,
+            26.0,
+            27.0
+        ],
+        [
+            25.0,
+            23.0,
+            25.0
+        ],
+        [
+            22.0,
+            24.0,
+            20.0
+        ]
+    ],
+    "uuid": "01f4481f-cd64-45af-b443-9c3ea791c3e3",
+    "p_tuple": [
+        2.0,
+        5.0
+    ],
+    "i_tuple": [
+        2.0,
+        5.0
+    ],
+    "j_tuple": [
+        2.0,
+        5.0
+    ],
+    "tc_tuple": [
+        5.0,
+        10.0
+    ],
+    "pc_tuple": [
+        2.0,
+        5.0
+    ],
+    "fc_tuple": [
+        10.0,
+        20.0
+    ],
+    "demand_tuple": [
+        10.0,
+        25.0
+    ],
+    "space_tuple": [
+        0.25,
+        1.5
+    ],
+    "num_p": 2,
+    "num_i": 2,
+    "num_j": 4
+}</code></pre>
+<h5 id="consuming-the-api_1">Consuming the API</h5>
+<ol>
+<li>Enter in the url <a href="http://localhost:8000/api/env/">http://server/api/env/uuid</a>, where uuid was provided by the previous step.</li>
+<li>Make sure you are logged in.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that iuuid is invalid, bad request will return.</p>
+</div>
+<p><img alt="Retrieve" src="../../img/env_retrieve.png" /></p>
+<hr /></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
