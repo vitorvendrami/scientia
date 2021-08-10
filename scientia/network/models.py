@@ -1,94 +1,8 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
-import gurobipy as gp
 import numpy as np
-import itertools
-import pandas as pd
 from django.contrib.postgres.fields import ArrayField
-
-class NetworkModel(models.Model):
-    uuid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
-
-    def __init__(self, Env):
-        self.num_p = Env.num_p
-        self.num_i = Env.num_i
-        self.num_j = Env.num_j
-        self.PxIxJ = list(itertools.product(range(self.num_p), range(self.num_i), range(self.num_j)))
-        self.PxJ = list(itertools.product(range(self.num_p), range(self.num_j)))
-        self.PxI = list(itertools.product(range(self.num_p), range(self.num_i)))
-        self.IxJ = list(itertools.product(range(self.num_i), range(self.num_j)))
-        self.transp_cost = Env.transp_cost
-        self.prod_cost = Env.prod_cost
-        self.demand = Env.demand
-        self.supply = Env.supply
-        self.space = Env.space
-        self.flow_cap = Env.flow_cap
-
-    def create_variables(self):
-        self.assign = {(p, i, j): self.model.addVar(vtype=gp.GRB.INTEGER, name='assign_{0}_{1}_{2}'.format(p, i, j))
-                       for p, i, j in self.PxIxJ}
-
-    def set_objective(self):
-        self.objective = gp.quicksum(
-            self.transp_cost[p, i, j] * self.assign[p, i, j] + self.prod_cost[p, i] * self.assign[p, i, j] for
-            p, i, j in self.PxIxJ)
-        self.model.ModelSense = gp.GRB.MINIMIZE
-        self.model.setObjective(self.objective)
-
-    def create_demand_constraint(self):
-        self.demand_constraint = {(p, j):
-            self.model.addLConstr(
-                lhs=gp.quicksum(self.assign[p, i, j] for i in range(self.num_i)),
-                sense=gp.GRB.GREATER_EQUAL,
-                rhs=self.demand[p, j],
-                name="Demand_constraint_{0}_{1}".format(p, j))
-            for p, j in self.PxJ}
-
-    def create_supply_constraint(self):
-        self.supply_constraint = {(p, i):
-            self.model.addLConstr(
-                lhs=gp.quicksum(self.assign[p, i, j] for j in range(self.num_j)),
-                sense=gp.GRB.LESS_EQUAL,
-                rhs=self.supply[p, i],
-                name="Supply_constraint_{0}_{1}".format(p, i))
-            for p, i in self.PxI}
-
-    def create_flow_constraint(self):
-        self.transp_constraint = {(i, j):
-            self.model.addLConstr(
-                lhs=gp.quicksum(self.space[p] * self.assign[p, i, j] for p in range(self.num_p)),
-                sense=gp.GRB.LESS_EQUAL,
-                rhs=self.flow_cap[i, j],
-                name="Flow_constraint_{0}_{1}".format(i, j))
-            for i, j in self.IxJ}
-
-    def solve_model(self):
-        self.model.optimize()
-        print('\n\nModel status:')
-        print(self.model.status)
-
-    def get_solution(self):
-        self.assign_df = pd.DataFrame.from_dict(self.assign, orient="index", columns=["variable_object"])
-        self.assign_df.index = pd.MultiIndex.from_tuples(self.assign_df.index,
-                                                         names=["Product", "Origins", "Destinations"])
-        self.assign_df.reset_index(inplace=True)
-        self.assign_df["Transported"] = self.assign_df["variable_object"].apply(lambda item: item.x)
-        self.assign_df.drop(columns=["variable_object"], inplace=True)
-
-        print('\nTotal Cost:')
-        print(self.model.getObjective().getValue())
-
-    def run(self):
-        self.model = gp.Model(name="Network model")
-        self.create_variables()
-        self.set_objective()
-        self.create_demand_constraint()
-        self.create_supply_constraint()
-        self.create_flow_constraint()
-        self.solve_model()
-        self.get_solution()
 
 
 class GenerateEnvironment(models.Model):
@@ -138,7 +52,6 @@ class GenerateEnvironment(models.Model):
     num_p = models.SmallIntegerField(blank=True, null=True)
     num_i = models.SmallIntegerField(blank=True, null=True)
     num_j = models.SmallIntegerField(blank=True, null=True)
-
 
     class Meta:
 
@@ -241,45 +154,3 @@ class GenerateEnvironment(models.Model):
             "flow_cap": flow_cap
         }
 
-# class RequestOrder(models.Model):
-#     uuid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
-#     request_number = models.CharField("Request Number", max_length=30, default="0")
-#     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-#     seller = models.ForeignKey(Supplier, on_delete=models.CASCADE)
-#     payment_option = models.CharField(
-#         "Opção de Pagamento",
-#         choices=PAYMENT_OPTION_CHOICES,
-#         max_length=20,
-#         default="deposit",
-#     )
-#     change = models.DecimalField("Troco", default=0, decimal_places=2, max_digits=8)
-#     active_client = models.BooleanField(default=True)
-#     active_seller = models.BooleanField(default=True)
-#     status = models.CharField(
-#         max_length=180, choices=STATUS_CHOICES, default="Pedido Realizado"
-#     )
-#     active = models.BooleanField(default=True)
-#     opening_date = models.DateField(auto_now_add=True)
-#     update_date = models.DateField(auto_now=True)
-#
-#     class Meta:
-#         verbose_name = "Pedido"
-#         verbose_name_plural = "Pedidos"
-#
-#     def __str__(self):
-#         return "Pedido de {} numero {}".format(self.client.user.username, self.pk)
-#
-#     def products(self):
-#         products_ids = self.items.values_list("product")
-#         return Product.objects.filter(pk__in=products_ids)
-#
-#     def total(self):
-#         aggregate_queryset = self.items.aggregate(
-#             total=models.Sum(
-#                 models.F("price") * models.F("quantity"),
-#                 output_field=models.DecimalField(),
-#             )
-#         )
-#         return aggregate_queryset["total"]
-#
-#     objects = OrderManager()

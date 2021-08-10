@@ -1,14 +1,6 @@
 
 from django.contrib import admin
-
-from .models import NetworkModel, GenerateEnvironment
-
-
-@admin.register(NetworkModel)
-class NetworkAdmin(admin.ModelAdmin):
-    list_display = ['user', 'uuid']
-    empty_value_display = "-empty-"
-
+from .models import GenerateEnvironment
 
 @admin.register(GenerateEnvironment)
 class GenerateAdmin(admin.ModelAdmin):
