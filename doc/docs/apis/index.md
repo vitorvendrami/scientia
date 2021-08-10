@@ -12,8 +12,14 @@ enter in the api root
 All endpoints avaiable are listed in [server](htpp://localhost:8000/api/)
 When entering in this url, all endpoints will be listed.
 
-Example: 
+!!! note
+    You need toe loged in to use the API's
 
-1. enter at [server](htpp://localhost:8000/api/)
+
+Example: 
+1. To login access the admin page(http://localhost:8000/admin/)
+   1. username: your username.
+   2. password: your password.
+2. enter at [server](http://localhost:8000/api/)
 
 ![avaiable_endpoints](../img/endpoints.png)

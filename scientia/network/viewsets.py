@@ -4,6 +4,9 @@ from .serializers import GenerateEnvironmentListSerializer, GenerateEnvironmentR
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from .models import GenerateEnvironment
+from rest_framework.filters import SearchFilter
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 
 
 class GenerateEnvironmentViewSet(viewsets.ModelViewSet):
@@ -11,6 +14,9 @@ class GenerateEnvironmentViewSet(viewsets.ModelViewSet):
     A simple ViewSet for listing or retrieving users.
     """
     serializer_class = GenerateEnvironmentSerializer
+    filter_backends = (SearchFilter,)
+    permission_classes = (IsAuthenticated,)
+    search_fields = ('uuid',)
     lookup_field = 'uuid'
     queryset = GenerateEnvironment.objects.all()
 
@@ -33,7 +39,7 @@ class GenerateEnvironmentViewSet(viewsets.ModelViewSet):
             serializer = GenerateEnvironmentRetrieveSerializer(env)
             results.update(serializer.data)
 
-        except Exception as e:
+        except Exception:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         return Response(results, status=status.HTTP_200_OK)
@@ -73,20 +79,6 @@ class GenerateEnvironmentViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_200_OK
             )
 
-    def upgrade(self, request, *args, **kwargs):
-        """
-        Update an existent environment
-        """
-
-        try:
-            uuid = kwargs['uuid']
-
-        except Exception as e:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        else:
-            return Response(status=status.HTTP_200_OK)
-
     def destroy(self, request, *args, **kwargs):
         try:
             uuid = kwargs['uuid']
@@ -99,17 +91,3 @@ class GenerateEnvironmentViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         return Response(status=status.HTTP_200_OK)
-
-
-"""
-{
-	"p_tuple": [2, 10],
-	"i_tuple": [2, 10],
-	"j_tuple": [2, 10],
-	"tc_tuple": [2, 10],
-	"pc_tuple": [2, 10],
-	"fc_tuple": [2, 10],
-	"demand_tuple": [2, 10],
-	"space_tuple": [2, 10]
-}
-"""
