@@ -9,7 +9,7 @@ enter in the api root
 - [Environment Api Documentation](./endpoints.md)
 
 ## Accessing the EndPoints
-All endpoints avaiable are listed in [server](htpp://localhost:8000/api/)
+All endpoints avaiable are listed in [server](http://18.216.21.236:8000/api/)
 When entering in this url, all endpoints will be listed.
 
 !!! note
@@ -20,6 +20,6 @@ Example:
 1. To login access the admin page(http://localhost:8000/admin/)
    1. username: your username.
    2. password: your password.
-2. enter at [server](http://localhost:8000/api/)
+2. enter at [server](http://18.216.21.236:8000/api/)
 
 ![avaiable_endpoints](../img/endpoints.png)

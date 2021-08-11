@@ -40,7 +40,7 @@ Response 200 ok
 ]
 ```
 ##### Consuming the API
-1. Enter in the url [http://server/api/env/](http://localhost:8000/api/env/)
+1. Enter in the url [http://server/api/env/](http://18.216.21.236:8000/api/env/)
 1. Click on `GET` button at the top right side of the screen
 1. Make sure you are logged in.
 
@@ -211,7 +211,7 @@ GET http://server/api/env/uuid
 ```
 
 ##### Consuming the API
-1. Enter in the url [http://server/api/env/uuid](http://localhost:8000/api/env/), where uuid was provided by the previous step.
+1. Enter in the url [http://server/api/env/uuid](http://18.216.21.236:8000/api/env/), where uuid was provided by the previous step.
 3. Make sure you are logged in.
 
 !!! warning

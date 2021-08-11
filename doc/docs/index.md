@@ -3,14 +3,14 @@
 
 Welcome to the Scientia APIs Documentation.
 
-[Testing Environment](http://localhost:8000/api/)
+[Testing Environment](http://18.216.21.236:8000/api/)
 
 [Contact the developer](#)
 
 [Find out more about Scientia Dev documentation](#)
 
 ##### Servers:
-- [http://localhost:8000/api/](https://github.com/vitorvendrami/scientia)
+- [http://18.216.21.236:8000/api/](http://18.216.21.236:8000/api/)
 
 
 ##### Infrastructure
