@@ -10,7 +10,7 @@ Welcome to the Scientia APIs Documentation.
 [Find out more about Scientia Dev documentation](#)
 
 ##### Servers:
-- [http://18.216.21.236:8000/api/](http://18.216.21.236:8000/api/)
+-  [http://18.216.21.236:8000/api/](http://18.216.21.236:8000/api/)
 
 
 ##### Infrastructure
