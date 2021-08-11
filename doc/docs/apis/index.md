@@ -17,12 +17,13 @@ When entering in this url, all endpoints will be listed.
 
 
 Example: 
+
 1. To login access the [admin page](http://18.216.21.236:8000/admin/)
 
    2. username: your username.
    
    3. password: your password.
    
-3. enter at [server](http://18.216.21.236:8000/api/) and it's done. Start to use the api!
+2. Enter at [server](http://18.216.21.236:8000/api/) and it's done. Start to use the api!
 
 ![avaiable_endpoints](../img/endpoints.png)
