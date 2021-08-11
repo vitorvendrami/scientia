@@ -4,7 +4,10 @@ Welcome to quick start documentation.
 
 ## Api's
 To acess the terminal for interative tests for the api's,
-enter in the api root
+enter in the [api root](http://18.216.21.236:8000/api/)
+
+To see the full documentation of our API, click at the link bellow.
+
 
 - [Environment Api Documentation](./endpoints.md)
 

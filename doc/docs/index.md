@@ -24,7 +24,6 @@ graph LR;
 
 *  [Quick Start](./apis/index.md)
 *  [Environment API](./apis/endpoints.md)
-*  [Authentication API](./apis/auth.md)
 
 ## Project layout
 
