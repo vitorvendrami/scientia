@@ -6,7 +6,6 @@ pages:
   - APIs:
     - Quick Start: 'apis/index.md'
     - Environment: 'apis/endpoints'
-    - Authentication: 'apis/auth.md'
 
 markdown_extensions:
   - pymdownx.superfences:

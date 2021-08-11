@@ -18,7 +18,6 @@ Welcome to the Scientia APIs Documentation.
 graph LR;
     server-->api/;
     api/-->env/;
-    api/-->auth/;
 
 ```
 ## APIs
