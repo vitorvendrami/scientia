@@ -82,6 +82,22 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#post" class="nav-link">Post</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#delete" class="nav-link">Delete</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -186,6 +202,8 @@ Response 200 ok
 </table>
 <p>Example:</p>
 <pre class="highlight"><code class="language-JSON">GET http://server/api/env/uuid
+
+Response
 200 ok
 {
     "transp_cost": [
@@ -330,10 +348,219 @@ Response 200 ok
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Note that iuuid is invalid, bad request will return.</p>
+<p>Note that if uuid is invalid, bad request will return.</p>
 </div>
 <p><img alt="Retrieve" src="../../img/env_retrieve.png" /></p>
-<hr /></div>
+<hr />
+<h2 id="post"><code>Post</code></h2>
+<h3 id="endpoint-env_1">endpoint: <code>/env/</code></h3>
+<p>Create a new Environment instance from a given json.</p>
+<h4 id="parameters_2">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p_tuple  *required</td>
+<td>body</td>
+<td>Array of integers</td>
+</tr>
+<tr>
+<td>i_tuple  *required</td>
+<td>body</td>
+<td>Array of integers</td>
+</tr>
+<tr>
+<td>j_tuple  *required</td>
+<td>body</td>
+<td>Environment identifier</td>
+</tr>
+<tr>
+<td>tc_tuple  *required</td>
+<td>body</td>
+<td>Environment identifier</td>
+</tr>
+<tr>
+<td>pc_tuple  *required</td>
+<td>body</td>
+<td>Environment identifier</td>
+</tr>
+<tr>
+<td>fc_tuple  *required</td>
+<td>body</td>
+<td>Environment identifier</td>
+</tr>
+<tr>
+<td>demand_tuple  *required</td>
+<td>body</td>
+<td>Environment identifier</td>
+</tr>
+<tr>
+<td>space_tuple  *required</td>
+<td>body</td>
+<td>Environment identifier</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses_2">Responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Not Authorized</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre class="highlight"><code class="language-JSON">POST http://server/api/env/
+
+Request body
+{
+    "p_tuple": [2, 5],
+    "i_tuple": [2, 5],
+    "j_tuple": [2, 5],
+    "tc_tuple": [5, 10],
+    "pc_tuple": [2, 5],
+    "fc_tuple": [10, 20],
+    "demand_tuple": [2, 5],
+    "space_tuple": [0.25, 1.5]
+}
+
+Response 
+200 ok
+HTTP 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+{
+    "uuid": "dedb7308-912f-41c5-b308-17bc9e753b67",
+    "p_tuple": [
+        2.0,
+        5.0
+    ],
+    "i_tuple": [
+        2.0,
+        5.0
+    ],
+    "j_tuple": [
+        2.0,
+        5.0
+    ],
+    "tc_tuple": [
+        5.0,
+        10.0
+    ],
+    "pc_tuple": [
+        2.0,
+        5.0
+    ],
+    "fc_tuple": [
+        10.0,
+        20.0
+    ],
+    "demand_tuple": [
+        2.0,
+        5.0
+    ],
+    "space_tuple": [
+        0.25,
+        1.5
+    ],
+    "num_p": null,
+    "num_i": null,
+    "num_j": null
+}</code></pre>
+<h5 id="consuming-the-api_2">Consuming the API</h5>
+<ol>
+<li>Enter in the url <a href="http://18.216.21.236:8000/api/env/">http://server/api/env/</a></li>
+<li>Fill the form at the bottom of the screen, using  parameters specification above.</li>
+<li>Click on <code>POST</code> button at the bottom right side of the screen</li>
+</ol>
+<h2 id="_1"><img alt="Testing Exmple" src="../../img/post.png" /></h2>
+<h2 id="delete"><code>Delete</code></h2>
+<h3 id="endpoint-env_2">endpoint: <code>/env/</code></h3>
+<p>Delete an Environment instance from a given uuid.</p>
+<h4 id="parameters_3">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uuid  *required</td>
+<td>path</td>
+<td>Environment identifier</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses_3">Responses</h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Not Authorized</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre class="highlight"><code class="language-JSON">DELETE http://server/api/env/uuid
+
+Response 
+HTTP 200 OK
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+}</code></pre>
+<h5 id="consuming-the-api_3">Consuming the API</h5>
+<ol>
+<li>
+<p>Enter in the url <a href="http://18.216.21.236:8000/api/env/">http://server/api/env/uuid</a>,
+where uuid was provided by the previous step.</p>
+</li>
+<li>
+<p>Click on <code>DELETE</code> on the right top side of the screen.</p>
+</li>
+</ol>
+<h2 id="_2"><img alt="Testing Exmple" src="../../img/post.png" /></h2></div>
             </div>
         </div>
 
