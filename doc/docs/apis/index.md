@@ -3,7 +3,7 @@
 Welcome to quick start documentation.
 
 ## Api's
-To acess the terminal for interative tests for the api's,
+To acess the terminal for interactive tests for the api's,
 enter in the [api root](http://18.216.21.236:8000/api/)
 
 To see the full documentation of our API, click at the link bellow.
@@ -16,7 +16,7 @@ All endpoints avaiable are listed in [server](http://18.216.21.236:8000/api/)
 When entering in this url, all endpoints will be listed.
 
 !!! note
-    You need toe loged in to use the API's
+    You need to be logged in to use the API's
 
 
 Example: 

@@ -213,7 +213,7 @@ Response
 ```
 
 ##### Consuming the API
-1. Enter in the url [http://server/api/env/uuid](http://18.216.21.236:8000/api/env/), where uuid was provided by the previous step.
+1. Enter the url [http://server/api/env/uuid](http://18.216.21.236:8000/api/env/), where uuid was provided by the previous step.
 3. Make sure you are logged in.
 
 !!! warning
@@ -317,7 +317,7 @@ Vary: Accept
 1. Fill the form at the bottom of the screen, using  parameters specification above.
 1. Click on `POST` button at the bottom right side of the screen
 
-![Testing Exmple](../img/post.png)
+![Testing Example](../img/post.png)
 ---
 
 ## ```Delete```
@@ -353,7 +353,7 @@ Vary: Accept
 }
 ```
 ##### Consuming the API
-1. Enter in the url [http://server/api/env/uuid](http://18.216.21.236:8000/api/env/),
+1. Enter the url [http://server/api/env/uuid](http://18.216.21.236:8000/api/env/),
 where uuid was provided by the previous step.
 
 2. Click on `DELETE` on the right top side of the screen.
