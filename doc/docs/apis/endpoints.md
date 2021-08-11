@@ -358,6 +358,5 @@ where uuid was provided by the previous step.
 
 2. Click on `DELETE` on the right top side of the screen.
 
-
-![Testing Exmple](../img/post.png)
+![Testing_Example](../img/DELETE.png)
 ---
