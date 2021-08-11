@@ -17,7 +17,7 @@ When entering in this url, all endpoints will be listed.
 
 
 Example: 
-1. To login access the [admin page](http://localhost:8000/admin/)
+1. To login access the [admin page](http://18.216.21.236:8000/admin/)
 
    2. username: your username.
    
